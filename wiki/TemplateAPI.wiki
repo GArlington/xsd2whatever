@@ -27,5 +27,8 @@ _note - although this projects diverges from GraniteDS, much of the information 
 *Class* 
 ----
 
+    `boolean isAnnotationPresent(Class<? extends Annotation> annotationClass)` check for annotation<br>
+    `<T extends Annotation> T getAnnotation(Class<T> annotationClass)` get annotation
+
 *Enum*
 ----
