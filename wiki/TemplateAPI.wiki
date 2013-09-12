@@ -18,11 +18,17 @@ _note - although this projects diverges from GraniteDS, much of the information 
 *ALL*
 ----
      `Class getType()` Java class reference  
+
      `String getName()` class name 
+
      `Package getPackage()` Java package reference for this class 
+
      `String getPackageName()` package name 
+
      `String getQualifiedName()` class package and name 
+
      `URL getUrl()` path to .class file 
+
 
 *Class* 
 ----
