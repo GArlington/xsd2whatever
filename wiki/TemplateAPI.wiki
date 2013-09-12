@@ -17,18 +17,28 @@ _note - although this projects diverges from GraniteDS, much of the information 
 
 *ALL*
 ----
-     `Class getType()` Java class reference<br>
-     `String getName()` class name<br>
-     `Package getPackage()` Java package reference for this class<br>
-     `String getPackageName()` package name<br>
-     `String getQualifiedName()` class package and name<br>
-     `URL getUrl()` path to .class file<br>
+     `Class getType()` *Java class reference*<br>
+     `String getName()` *class name*<br>
+     `Package getPackage()` *Java package reference for this class*<br>
+     `String getPackageName()` *package name*<br>
+     `String getQualifiedName()` *class package and name*<br>
+     `URL getUrl()` *path to .class file*<br>
 
 *Class* 
 ----
-
-    `boolean isAnnotationPresent(Class<? extends Annotation> annotationClass)` check for annotation<br>
-    `<T extends Annotation> T getAnnotation(Class<T> annotationClass)` get annotation
+    `Set<JavaImport> getImports()` *todo*<br>
+    `boolean hasSuperclass()` *todo*<br>
+    `JavaType getSuperclass()` *todo*<br>
+    `boolean hasInterfaces()` *todo*<br>
+    `List<JavaInterface> getInterfaces()` *todo*<br>
+    `boolean hasInterfacesProperties()` *todo*<br>
+    `List<JavaProperty> getInterfacesProperties()` *todo*<br>
+    `Collection<JavaProperty> getProperties()` *todo*<br>
+    `boolean hasUid()` *todo*<br>
+    `JavaFieldProperty getUid()` *todo*<br>
+    `boolean hasEnumProperty()` *todo*<br>
+    `boolean isAnnotationPresent(Class<? extends Annotation> annotationClass)` *check for annotation*<br>
+    `<T extends Annotation> T getAnnotation(Class<T> annotationClass)` *get annotation*
 
 *Enum*
 ----
