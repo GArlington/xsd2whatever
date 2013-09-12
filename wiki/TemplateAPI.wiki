@@ -17,28 +17,28 @@ _note - although this projects diverges from GraniteDS, much of the information 
 
 *ALL*
 ----
-<font color="purple">`Class getType()`</font> *Java class reference*<br>
-<font color="purple">`String getName()`</font> *class name*<br>
-<font color="purple">`Package getPackage()`</font> *Java package reference for this class*<br>
-<font color="purple">`String getPackageName()`</font> *package name*<br>
-<font color="purple">`String getQualifiedName()`</font> *class package and name*<br>
-<font color="purple">`URL getUrl()`</font> *path to .class file*<br>
-
+<font color="purple">`Class`</font> *getType()*<br>
+<font color="purple">`String`</font> *getName()*<br>
+<font color="purple">`Package`</font> *getPackage()*<br>
+<font color="purple">`String`</font> *getPackageName()*<br>
+<font color="purple">`String`</font> *getQualifiedName()*<br>
+<font color="purple">`URL`</font> *getUrl()*<br>
+----
 *Class* 
 ----
-<font color="purple">`Set<JavaImport> getImports()`</font> *todo*<br>
-<font color="purple">`boolean hasSuperclass()`</font> *todo*<br>
-<font color="purple">`JavaType getSuperclass()`</font> *todo*<br>
-<font color="purple">`boolean hasInterfaces()`</font> *todo*<br>
-<font color="purple">`List<JavaInterface> getInterfaces()`</font> *todo*<br>
-<font color="purple">`boolean hasInterfacesProperties()`</font> *todo*<br>
-<font color="purple">`List<JavaProperty> getInterfacesProperties()`</font> *todo*<br>
-<font color="purple">`Collection<JavaProperty> getProperties()`</font> *todo*<br>
-<font color="purple">`boolean hasUid()`</font> *todo*<br>
-<font color="purple">`JavaFieldProperty getUid()`</font> *todo*<br>
-<font color="purple">`boolean hasEnumProperty()`</font> *todo*<br>
-<font color="purple">`boolean isAnnotationPresent(Class<? extends Annotation> annotationClass)`</font> *check for annotation*<br>
-<font color="purple">`<T extends Annotation> T getAnnotation(Class<T> annotationClass)`</font> *get annotation*<br>
-
+<font color="purple">`Set<JavaImport>`</font> *getImports()*<br>
+<font color="purple">`boolean`</font> *hasSuperclass()*<br>
+<font color="purple">`JavaType`</font> *getSuperclass()*<br>
+<font color="purple">`boolean`</font> *hasInterfaces()*<br>
+<font color="purple">`List<JavaInterface>`</font> *getInterfaces()*<br>
+<font color="purple">`boolean`</font> *hasInterfacesProperties()*<br>
+<font color="purple">`List<JavaProperty>`</font> *getInterfacesProperties()*<br>
+<font color="purple">`Collection<JavaProperty>`</font> *getProperties()*<br>
+<font color="purple">`boolean`</font> *hasEnumProperty()*<br>
+<font color="purple">`boolean`</font> *isAnnotationPresent(Class`<? extends Annotation>` annotationClass)*<br>
+<font color="purple">`<T extends Annotation> T`</font> *getAnnotation(Class`<T>` annotationClass)*<br>
+----
 *Enum*
 ----
+<font color="purple">`JavaEnumValue`</font> *getFirstEnumValue()*<br>
+<font color="purple">`List<JavaEnumValue>`</font> *getEnumValues()*<br>
