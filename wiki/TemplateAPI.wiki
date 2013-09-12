@@ -11,5 +11,11 @@ For information on groovy template syntax, check out [http://groovy.codehaus.org
 When the templates are executed, they are initialized with a set of variables that can be evaluated to produce the desired output.
 
   * *gVersion* - Version number of the generator
-  * *jClass* - 
+  * *jClass* - Object describing the Java class that was generated via JAXB-XJC.  This object (hopefully) contains all of the information about the XSD entity to generate the desired output.  *jClass* has the following methods (depending on the context):
+
+_*note - although this projects diverges from GraniteDS, much of the information on the Granite template engine still apples, and can be a good resource [http://www.graniteds.org/confluence/display/DOC/3.+Gas3+Template+LanguageGas3 Template Language]_
+
+===ALL===
+----
+ 
  
