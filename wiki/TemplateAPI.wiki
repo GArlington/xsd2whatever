@@ -15,7 +15,17 @@ When the templates are executed, they are initialized with a set of variables th
 
 _note - although this projects diverges from GraniteDS, much of the information on the Granite template engine still apples, and can be a good resource [http://www.graniteds.org/confluence/display/DOC/3.+Gas3+Template+LanguageGas3 Template Language]_
 
-===ALL===
+*ALL*
 ----
- 
- 
+    || Class getType() || Java class reference  || 
+    || String getName() || class name || 
+    || Package getPackage() || Java package reference for this class ||  
+    || String getPackageName() || package name ||  
+    || String getQualifiedName() || class package and name || 
+    || URL getUrl() || path to .class file || 
+
+*Class* 
+----
+
+*Enum*
+----
