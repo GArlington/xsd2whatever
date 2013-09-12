@@ -17,12 +17,12 @@ _note - although this projects diverges from GraniteDS, much of the information 
 
 *ALL*
 ----
-     {{{Class getType()}}} Java class reference
-     {{{String getName()}}} class name 
-     {{{Package getPackage()}}} Java package reference for this class 
-     {{{String getPackageName()}}} package name 
-     {{{String getQualifiedName()}}} class package and name 
-     {{{URL getUrl()}}} path to .class file 
+     `Class getType()` Java class reference<br>
+     `String getName()` class name<br>
+     `Package getPackage()` Java package reference for this class<br>
+     `String getPackageName()` package name<br>
+     `String getQualifiedName()` class package and name<br>
+     `URL getUrl()` path to .class file<br>
 
 *Class* 
 ----
