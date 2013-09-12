@@ -1,0 +1,15 @@
+#summary Writing your own XSD2Whatever template
+
+== Templates ==
+Templates are groovy scripts designed to work with XSD2Whatever.  The generator requires a _classTemplate_ and, optionally, an _enumTemplate_ (if your XSDs contain enumerations).  
+
+The generator handles many features of XSD, but not the complete specification.  It will likely evolve over time to provide more functionality.
+
+For information on groovy template syntax, check out [http://groovy.codehaus.org/Groovy+Templates Groovy Templates]
+
+== Variables ==
+When the templates are executed, they are initialized with a set of variables that can be evaluated to produce the desired output.
+
+  * *gVersion* - Version number of the generator
+  * *jClass* - 
+ 
