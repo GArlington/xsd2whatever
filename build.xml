@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="XSD2Whatever" default="release" basedir=".">
+<!--
+  Copyright (C) 2012 Jason Gardner
+
+  This library is free software; you can redistribute it and/or modify
+  it under the terms of the GNU Lesser General Public License as published by
+  the Free Software Foundation; either version 3 of the License, or (at your
+  option) any later version.
+
+  This library is distributed in the hope that it will be useful, but
+  WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+  FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License
+  for more details.
+
+  You should have received a copy of the GNU Lesser General Public License
+  along with this library; if not, see <http://www.gnu.org/licenses/>.
+
+  "XSD2Whatever" - builds upon and incorprates many pieces of the GraniteDS
+  project and, therefore, assumes the same licensing model. www.graniteds.org
+-->
+
+<!-- =========================================================================================================================================
+=============================================================  PROPERTY DEFINITIONS  =========================================================
+========================================================================================================================================== -->
+
+    <property environment="env"/>
+
+    <!-- configuration file -->
+    <property name="user.properties" value="tmp/user.properties"/>
+    <property file="${user.properties}"/>
+
+    <!-- version numbering -->
+    <property name="base.version" value="1.0.0"/>
+    <property name="env.BUILD_NUMBER" value="UNSTABLE"/>
+    <property name="app.version" value="${base.version}.${env.BUILD_NUMBER}"/>
+
+    <!-- root project directories -->
+    <property name="doc.dir" value="doc"/>
+    <property name="etc.dir" value="etc"/>
+    <property name="lib.dir" value="lib"/>
+    <property name="src.dir" value="src"/>
+
+    <!-- directories not checked into source control -->
+    <property name="build.dir" value="build"/>
+    <property name="jar.dir" value="${build.dir}/jar"/>
+    <property name="tmp.dir" value="tmp"/>
+
+    <path id="generator.classpath">
+        <fileset dir="${lib.dir}/" includes="*.jar" />
+    </path>
+
+    <path id="anttask.classpath">
+        <fileset dir="${lib.dir}/" includes="*.jar" />
+        <dirset dir="${build.dir}/generator"/>
+    </path>
+
+<!-- =========================================================================================================================================
+==========================================================  INITIALIZATION TARGETS  ==========================================================
+========================================================================================================================================== -->
+
+    <target name="clean">
+        <delete dir="${build.dir}"/>
+    </target>
+
+    <target name="init" depends="check-properties">
+        <mkdir dir="${build.dir}"/>
+        <mkdir dir="${jar.dir}" />
+        <mkdir dir="${build.dir}/generator" />
+    </target>
+
+<!-- =========================================================================================================================================
+===============================================================  BUILD TARGETS  ==============================================================
+========================================================================================================================================== -->
+
+    <target name="build-generator" depends="init">
+        <javac destdir="${build.dir}/generator" srcdir="${src.dir}/generator" target="1.5" source="1.5" debug="true"
+            classpathref="generator.classpath">
+        </javac>
+    </target>
+
+    <target name="build-ant" depends="build-generator">
+        <javac srcdir="${src.dir}/ant" destdir="${jar.dir}" classpathref="anttask.classpath"/>
+    </target>
+
+    <target name="build-jar" depends="build-ant">
+        <unzip dest="${jar.dir}" overwrite="true">
+            <fileset dir="${lib.dir}">
+                <include name="*.jar"/>
+            </fileset>
+        </unzip>
+        <copy todir="${jar.dir}">
+            <fileset dir="${build.dir}/generator" includes="**/*.*" />
+            <fileset dir="${etc.dir}" includes="LICENSE.txt" />
+        </copy>
+        <delete dir="${jar.dir}/1.0"/>
+        <jar jarfile="${build.dir}/${ant.project.name}-${app.version}.jar" basedir="${jar.dir}" />
+    </target>
+
+<!-- =========================================================================================================================================
+===============================================================  DIST TARGETS  ===============================================================
+========================================================================================================================================== -->
+
+    <target name="release" depends="clean,build-jar"/>
+
+<!-- ==========================================================================================================================================
+============================================================  USER PROPERTIES FILE  ===========================================================
+=========================================================================================================================================== -->
+
+    <target name="load-props" depends="check-userprop-file-exists" if="userprop-file-exists">
+        <property file="${user.properties}"/>
+    </target>
+
+    <target name="check-userprop-file-exists">
+        <available file="${user.properties}" property="userprop-file-exists"/>
+    </target>
+
+    <target name="check-properties" depends="load-props" unless="userprop-file-exists">
+        <mkdir dir="${tmp.dir}"/>
+        <echo file="${user.properties}">#User configurable properties
+#env.BUILD_NUMBER=1
+        </echo>
+        <fail>
+        *
+
+        ******************** IMPORTANT ********************
+
+        A default ${user.properties} file was created.
+
+        Customize this for your local build environment, after which you may run the build again.
+
+        ***************************************************
+        </fail>
+    </target>
+
+</project>
