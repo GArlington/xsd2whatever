@@ -44,7 +44,7 @@ public class XSD2WhateverTask extends Task {
 
     public void execute() throws BuildException {
 
-        System.out.println("Processing XSD files...");
+        log("Processing XSD files...");
         java.io.File classes = new java.io.File(outputDir + java.io.File.separator + "classes");
         java.io.File gensrc = new java.io.File(outputDir + java.io.File.separator + "generated");
 
