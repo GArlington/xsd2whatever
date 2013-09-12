@@ -17,28 +17,28 @@ _note - although this projects diverges from GraniteDS, much of the information 
 
 *ALL*
 ----
-     `Class getType()` *Java class reference*<br>
-     `String getName()` *class name*<br>
-     `Package getPackage()` *Java package reference for this class*<br>
-     `String getPackageName()` *package name*<br>
-     `String getQualifiedName()` *class package and name*<br>
-     `URL getUrl()` *path to .class file*<br>
+<font color="purple">`Class getType()`</font> *Java class reference*<br>
+<font color="purple">`String getName()`</font> *class name*<br>
+<font color="purple">`Package getPackage()`</font> *Java package reference for this class*<br>
+<font color="purple">`String getPackageName()`</font> *package name*<br>
+<font color="purple">`String getQualifiedName()`</font> *class package and name*<br>
+<font color="purple">`URL getUrl()`</font> *path to .class file*<br>
 
 *Class* 
 ----
-    `Set<JavaImport> getImports()` *todo*<br>
-    `boolean hasSuperclass()` *todo*<br>
-    `JavaType getSuperclass()` *todo*<br>
-    `boolean hasInterfaces()` *todo*<br>
-    `List<JavaInterface> getInterfaces()` *todo*<br>
-    `boolean hasInterfacesProperties()` *todo*<br>
-    `List<JavaProperty> getInterfacesProperties()` *todo*<br>
-    `Collection<JavaProperty> getProperties()` *todo*<br>
-    `boolean hasUid()` *todo*<br>
-    `JavaFieldProperty getUid()` *todo*<br>
-    `boolean hasEnumProperty()` *todo*<br>
-    `boolean isAnnotationPresent(Class<? extends Annotation> annotationClass)` *check for annotation*<br>
-    `<T extends Annotation> T getAnnotation(Class<T> annotationClass)` *get annotation*
+<font color="purple">`Set<JavaImport> getImports()`</font> *todo*<br>
+<font color="purple">`boolean hasSuperclass()`</font> *todo*<br>
+<font color="purple">`JavaType getSuperclass()`</font> *todo*<br>
+<font color="purple">`boolean hasInterfaces()`</font> *todo*<br>
+<font color="purple">`List<JavaInterface> getInterfaces()`</font> *todo*<br>
+<font color="purple">`boolean hasInterfacesProperties()`</font> *todo*<br>
+<font color="purple">`List<JavaProperty> getInterfacesProperties()`</font> *todo*<br>
+<font color="purple">`Collection<JavaProperty> getProperties()`</font> *todo*<br>
+<font color="purple">`boolean hasUid()`</font> *todo*<br>
+<font color="purple">`JavaFieldProperty getUid()`</font> *todo*<br>
+<font color="purple">`boolean hasEnumProperty()`</font> *todo*<br>
+<font color="purple">`boolean isAnnotationPresent(Class<? extends Annotation> annotationClass)`</font> *check for annotation*<br>
+<font color="purple">`<T extends Annotation> T getAnnotation(Class<T> annotationClass)`</font> *get annotation*<br>
 
 *Enum*
 ----
