@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="XSD2WhateverExample" default="release" basedir=".">
+<!--
+  Copyright (C) 2012 Jason Gardner
+
+  This library is free software; you can redistribute it and/or modify
+  it under the terms of the GNU Lesser General Public License as published by
+  the Free Software Foundation; either version 3 of the License, or (at your
+  option) any later version.
+
+  This library is distributed in the hope that it will be useful, but
+  WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+  FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License
+  for more details.
+
+  You should have received a copy of the GNU Lesser General Public License
+  along with this library; if not, see <http://www.gnu.org/licenses/>.
+
+  "XSD2Whatever" - builds upon and incorprates many pieces of the GraniteDS
+  project and, therefore, assumes the same licensing model. www.graniteds.org
+-->
+<!-- =========================================================================================================================================
+=============================================================  PROPERTY DEFINITIONS  =========================================================
+========================================================================================================================================== -->
+
+    <property environment="env"/>
+
+    <!-- version numbering -->
+    <property name="base.version" value="1.0.0"/>
+    <property name="env.BUILD_NUMBER" value="UNSTABLE"/>
+    <property name="app.version" value="${base.version}.${env.BUILD_NUMBER}"/>
+
+    <!-- root project directories -->
+    <property name="doc.dir" value="doc"/>
+    <property name="etc.dir" value="etc"/>
+    <property name="lib.dir" value="lib"/>
+    <property name="src.dir" value="src/example"/>
+
+    <!-- directories not checked into source control -->
+    <property name="build.dir" value="build"/>
+    <property name="tmp.dir" value="tmp"/>
+
+    <!-- configuration file -->
+    <property name="user.properties" value="${tmp.dir}/user.properties"/>
+
+    <taskdef name="xsd2whatever" classname="freecake.xsd2whatever.XSD2WhateverTask">
+        <classpath>
+            <fileset dir="${build.dir}" includes="XSD2Whatever*.jar"/>
+        </classpath>
+    </taskdef>
+
+<!-- =========================================================================================================================================
+==========================================================  INITIALIZATION TARGETS  ==========================================================
+========================================================================================================================================== -->
+
+    <target name="clean">
+        <delete dir="${build.dir}"/>
+    </target>
+
+    <target name="init" depends="check-properties">
+        <mkdir dir="${build.dir}"/>
+    </target>
+
+<!-- =========================================================================================================================================
+===============================================================  BUILD TARGETS  ==============================================================
+========================================================================================================================================== -->
+
+    <target name="build" depends="init">
+        <xsd2whatever modelnamespace="org.company.model" outputdir="${build.dir}" extension="js" keepJava="false"
+            classTemplate="${src.dir}/templates/class.tpl" enumTemplate="${src.dir}/templates/enum.tpl" >
+            <fileset dir="${src.dir}/xsds">
+                <include name="*.xsd"/>
+            </fileset>
+        </xsd2whatever>
+    </target>
+
+<!-- =========================================================================================================================================
+===============================================================  DIST TARGETS  ===============================================================
+========================================================================================================================================== -->
+
+    <target name="release" depends="build"/>
+
+<!-- ==========================================================================================================================================
+============================================================  USER PROPERTIES FILE  ===========================================================
+=========================================================================================================================================== -->
+
+    <target name="load-props" depends="check-userprop-file-exists" if="userprop-file-exists">
+        <property file="${user.properties}"/>
+    </target>
+
+    <target name="check-userprop-file-exists">
+        <available file="${user.properties}" property="userprop-file-exists"/>
+    </target>
+
+    <target name="check-properties" depends="load-props" unless="userprop-file-exists">
+        <mkdir dir="${tmp.dir}"/>
+        <echo file="${user.properties}">#User configurable properties
+#env.BUILD_NUMBER=1
+        </echo>
+        <fail>
+        *
+
+        ******************** IMPORTANT ********************
+
+        A default ${user.properties} file was created.
+
+        Customize this for your local build environment, after which you may run the build again.
+
+        ***************************************************
+        </fail>
+    </target>
+
+</project>

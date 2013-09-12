@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="freecake.testschemas" elementFormDefault="qualified" targetNamespace="freecake.testschemas" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+<!-- basic objects for testing elements and attributes -->
+
+  <xs:complexType name="AttributeObject">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="MyOnlyElement" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute name="optionalint" type="xs:int" />
+    <xs:attribute name="requiredint" type="xs:int" use="required" />
+    <xs:attribute name="optionalbool" type="xs:boolean" />
+    <xs:attribute name="requiredbool" type="xs:boolean" use="required" />
+    <xs:attribute name="optionalnumber" type="xs:double" />
+    <xs:attribute name="requirednumber" type="xs:double" use="required" />
+    <xs:attribute name="optionalstring" type="xs:string" />
+    <xs:attribute name="requiredstring" type="xs:string" use="required" />
+    <xs:attribute name="optionalenum" type="tns:TestEnum" />
+    <xs:attribute name="requiredenum" type="tns:TestEnum" use="required" />
+    <xs:attribute name="optionaldate" type="xs:date" />
+    <xs:attribute name="requireddate" type="xs:date" use="required" />
+  </xs:complexType>
+
+  <xs:complexType name="ElementObject">
+    <xs:sequence>
+      <xs:element name="optionalint" type="xs:int" minOccurs="0" />
+      <xs:element name="requiredint" type="xs:int" minOccurs="1" />
+      <xs:element name="optionalbool" type="xs:boolean" minOccurs="0" />
+      <xs:element name="requiredbool" type="xs:boolean" minOccurs="1" />
+      <xs:element name="optionalnumber" type="xs:double" minOccurs="0" />
+      <xs:element name="requirednumber" type="xs:double" minOccurs="1" />
+      <xs:element name="optionalstring" type="xs:string" minOccurs="0" />
+      <xs:element name="requiredstring" type="xs:string" minOccurs="1" />
+      <xs:element name="optionalenum" type="tns:TestEnum" minOccurs="0"/>
+      <xs:element name="requiredenum" type="tns:TestEnum" minOccurs="1"/>
+      <xs:element name="optionaldate" type="xs:date" minOccurs="0"/>
+      <xs:element name="requireddate" type="xs:date" minOccurs="1" />
+      <xs:element name="optionalobject" type="tns:ReservedKeywordsObject" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="requiredobject" type="tns:ReservedKeywordsObject" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="childCollectionopt" type="tns:ElementObject" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="childCollectionreq" type="tns:ElementObject" minOccurs="1" maxOccurs="unbounded"/>
+      <xs:element name="stringArrayopt" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="stringArrayreq" type="xs:string" minOccurs="1" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+<!-- object to test keys that are reserved words -->
+
+  <xs:complexType name="ReservedKeywordsObject">
+    <xs:sequence>
+      <xs:element name="delete" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+
+<!-- objects to test simple content  -->
+
+  <xs:complexType name="SimpleContentObject">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="optionalstring" type="xs:string" />
+        <xs:attribute name="requiredstring" type="xs:string" use="required" />
+        <xs:attribute name="optionalnumber" type="xs:double" />
+        <xs:attribute name="requirednumber" type="xs:double" use="required" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="SimpleContentMessage">
+    <xs:sequence>
+      <xs:element name="SimpleContentObject" type="tns:SimpleContentObject" />
+    </xs:sequence>
+  </xs:complexType>
+
+<!-- object to test how various number types are translated -->
+
+  <xs:complexType name="NumberTypesObject">
+    <xs:sequence>
+      <xs:element name="optionalint" type="xs:int" minOccurs="0" />
+      <xs:element name="mybyte" type="xs:byte"/>
+      <xs:element name="mydecimal" type="xs:decimal"/>
+      <xs:element name="mydouble" type="xs:double"/>
+      <xs:element name="myfloat" type="xs:float"/>
+      <xs:element name="myint" type="xs:int"/>
+      <xs:element name="myinteger" type="xs:integer"/>
+      <xs:element name="mylong" type="xs:long"/>
+      <xs:element name="mynegativeInteger" type="xs:negativeInteger"/>
+      <xs:element name="mynonNegativeInteger" type="xs:nonNegativeInteger"/>
+      <xs:element name="mynonPositiveInteger" type="xs:nonPositiveInteger"/>
+      <xs:element name="mypositiveInteger" type="xs:positiveInteger"/>
+      <xs:element name="myshort" type="xs:short"/>
+      <xs:element name="myunsignedLong" type="xs:unsignedLong"/>
+      <xs:element name="myunsignedInt" type="xs:unsignedInt"/>
+      <xs:element name="myunsignedShort" type="xs:unsignedShort"/>
+      <xs:element name="myunsignedByte" type="xs:unsignedByte"/>
+    </xs:sequence>
+  </xs:complexType>
+
+<!-- objects to test xs:all and xs:choice -->
+
+  <xs:complexType name="AllObjectReqCollection">
+    <xs:all minOccurs="1" maxOccurs="1">
+      <xs:element name="value" type="xs:string" />
+      <xs:element name="elementObject" type="tns:ElementObject" />
+    </xs:all>
+  </xs:complexType>
+
+  <xs:complexType name="ChoiceObjectReqCollection">
+    <xs:choice minOccurs="1" maxOccurs="unbounded">
+      <xs:element name="value" type="xs:string" />
+      <xs:element name="elementObject" type="tns:ElementObject" />
+    </xs:choice>
+  </xs:complexType>
+
+<!-- enums -->
+
+  <xs:simpleType name="TestEnum">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="THEFIRST" />
+      <xs:enumeration value="THESECOND" />
+      <xs:enumeration value="THETHIRD" />
+      <xs:enumeration value="WITH SPACE" />
+    </xs:restriction>
+  </xs:simpleType>
+
+</xs:schema>
